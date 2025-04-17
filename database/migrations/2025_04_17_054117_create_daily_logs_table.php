@@ -1,0 +1,43 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('daily_logs', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->date('date');
+            $table->unsignedTinyInteger('mood');
+
+            $table->dateTime('sleep_start')->nullable();
+            $table->dateTime('sleep_end')->nullable();
+
+            $table->boolean('meal_morning')->default(false);
+            $table->boolean('meal_lunch')->default(false);
+            $table->boolean('meal_dinner')->default(false);
+            $table->boolean('meal_snack')->default(false);
+
+            $table->text('activity')->nullable();
+            $table->text('medication')->nullable();
+            $table->text('journal')->nullable();
+            
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('daily_logs');
+    }
+};
