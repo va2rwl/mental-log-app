@@ -16,6 +16,11 @@ class DashboardController extends Controller
             ->whereDate('log_date', $today)
             ->first();
 
+        $recentLog = DailyLog::where('user_id', Auth::id())
+            ->orderBy('log_date', 'desc')
+            ->limit(5)
+            ->get();
+
         return view('dashboard', compact('todayLog'));
     }
 }
