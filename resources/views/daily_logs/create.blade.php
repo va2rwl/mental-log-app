@@ -7,7 +7,7 @@
         @csrf
         @include('daily_logs.form')
         {{-- 登録ボタン --}}
-        <div>
+        <div class="flex justify-end">
             <button type="submit"
                 class="text-center rounded bg-indigo-500 px-6 py-2 font-semibold text-white hover:bg-indigo-600">保存する</button>
         </div>
