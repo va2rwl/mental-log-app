@@ -17,8 +17,8 @@ return new class extends Migration
             $table->date('log_date');
             $table->unsignedTinyInteger('mood');
 
-            $table->dateTime('sleep_start')->nullable();
-            $table->dateTime('sleep_end')->nullable();
+            $table->time('sleep_start')->nullable();
+            $table->time('sleep_end')->nullable();
 
             $table->boolean('meal_morning')->default(false);
             $table->boolean('meal_lunch')->default(false);
@@ -30,8 +30,6 @@ return new class extends Migration
             $table->text('journal')->nullable();
 
             $table->timestamps();
-
-            
         });
     }
 

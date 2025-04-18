@@ -25,6 +25,13 @@ class DailyLog extends Model
         'journal',
     ];
 
+    protected $casts = [
+        'log_date' => 'date',
+        'sleep_start' => 'datetime:H:i',
+        'sleep_end' => 'datetime:H:i',
+    ];
+
+
     public function user()
     {
         return $this->belongsTo(User::class);

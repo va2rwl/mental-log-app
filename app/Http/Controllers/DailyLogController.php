@@ -16,10 +16,10 @@ class DailyLogController extends Controller
     public function index()
     {
         $dailyLogs = DailyLog::where('user_id', Auth::id())
-        ->orderBy('log_date', 'desc')
-        ->paginate(10); // ページネーションあり
+            ->orderBy('log_date', 'desc')
+            ->paginate(10); // ページネーションあり
 
-    return view('daily_logs.index', compact('dailyLogs'));
+        return view('daily_logs.index', compact('dailyLogs'));
     }
 
     /**
@@ -28,7 +28,6 @@ class DailyLogController extends Controller
     public function create()
     {
         return view('daily_logs.create');
-
     }
 
     /**
@@ -59,6 +58,13 @@ class DailyLogController extends Controller
             $data[$field] = $request->has($field);
         }
 
+        if ($request->filled('sleep_start')) {
+            $data['sleep_start'] = $request->sleep_start . ':00';
+        }
+        if ($request->filled('sleep_end')) {
+            $data['sleep_end'] = $request->sleep_end . ':00';
+        }
+
         DailyLog::create($data);
 
         return redirect()->route('dashboard')->with('success', '記録を保存しました！');
@@ -77,7 +83,7 @@ class DailyLogController extends Controller
      */
     public function edit(DailyLog $dailyLog)
     {
-        return view('daily_logs.edit',compact('dailyLog'));
+        return view('daily_logs.edit', compact('dailyLog'));
     }
 
     /**
@@ -104,7 +110,13 @@ class DailyLogController extends Controller
         foreach (['meal_morning', 'meal_lunch', 'meal_dinner', 'meal_snack', 'medication'] as $field) {
             $data[$field] = $request->has($field);
         }
-
+        
+        if ($request->filled('sleep_start')) {
+            $data['sleep_start'] = $request->sleep_start . ':00';
+        }
+        if ($request->filled('sleep_end')) {
+            $data['sleep_end'] = $request->sleep_end . ':00';
+        }
         $dailyLog->update($data);
 
         return redirect()->route('dashboard')->with('success', '記録を更新しました！');
