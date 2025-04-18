@@ -18,10 +18,30 @@
     @else
         <div class="rounded-xl bg-white p-6 shadow">
             <p class="text-lg text-gray-700">今日はまだ記録がありません</p>
-            <a href="{{ route('daily_logs.create') }}"
+            <a href="{{ route('daily-logs.create') }}"
                 class="mt-4 inline-block rounded bg-indigo-500 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-600">
                 今日の記録をつける
             </a>
         </div>
     @endif
 @endsection
+@if ($recentLogs->isNotEmpty())
+    <div class="mt-10">
+        <h3 class="mb-4 text-xl font-semibold text-gray-700">最近の記録</h3>
+        <ul class="space-y-3">
+            @foreach ($recentLogs as $log)
+                <li class="flex items-center justify-between rounded-lg bg-white p-4 shadow">
+                    <div>
+                        <p class="font-medium text-gray-800">
+                            {{ $log->log_date->format('Y年m月d日') }}：気分スコア <span
+                                class="font-bold">{{ $log->mood }}</span>
+                        </p>
+                    </div>
+                    <a href="{{ route('daily-logs.edit', $log) }}" class="text-sm text-indigo-500 hover:underline">
+                        編集
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+@endif
