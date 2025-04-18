@@ -11,16 +11,16 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $today = Carbon::today();
+        // $today = Carbon::today();
         $todayLog = DailyLog::where('user_id', Auth::id())
-            ->whereDate('log_date', $today)
+            ->where('log_date', now()->toDateString())
             ->first();
 
-        $recentLog = DailyLog::where('user_id', Auth::id())
+        $recentLogs = DailyLog::where('user_id', Auth::id())
             ->orderBy('log_date', 'desc')
             ->limit(5)
             ->get();
 
-        return view('dashboard', compact('todayLog'));
+        return view('dashboard', compact('todayLog', 'recentLogs'));
     }
 }

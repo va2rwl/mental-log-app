@@ -47,5 +47,7 @@
                 @endforeach
             </ul>
         </div>
+        @else
+        <div class="mt-10"><h3 class="text-xl font-semibold text-gray-700 mb-4">最近の記録は0件です</h3></div>
     @endif
 @endsection

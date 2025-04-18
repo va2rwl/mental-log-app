@@ -75,9 +75,9 @@ class DailyLogController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(DailyLog $dailyLog)
     {
-        //
+        return view('daily_logs.edit',compact('dailyLog'));
     }
 
     /**
