@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('daily_logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->date('date');
+            $table->date('log_date');
             $table->unsignedTinyInteger('mood');
 
             $table->dateTime('sleep_start')->nullable();
@@ -26,10 +26,12 @@ return new class extends Migration
             $table->boolean('meal_snack')->default(false);
 
             $table->text('activity')->nullable();
-            $table->text('medication')->nullable();
+            $table->boolean('medication')->default(false);
             $table->text('journal')->nullable();
-            
+
             $table->timestamps();
+
+            
         });
     }
 

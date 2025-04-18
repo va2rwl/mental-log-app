@@ -1,15 +1,16 @@
 @extends('layouts.app')
-@section('title', '今日の記録')
+@section('title', '記録を編集')
 @section('content')
-    <h2 class="mb-6 text-2xl font-bold">今日の記録をつける</h2>
+    <h2 class="mb-6 text-2xl font-bold">今日の記録を編集する</h2>
 
-    <form action="{{ route('daily-logs.store') }}" method="POST" class="space-y-6">
+    <form action="{{ route('daily-logs.update') }}" method="POST" class="space-y-6">
         @csrf
-        @include('daily_logs.form')
+        @method('PUT')
+        @include('daily_logs.form', ['dailyLog' => $dailyLog])
         {{-- 登録ボタン --}}
-        <div>
+        <div >
             <button type="submit"
-                class="text-center rounded bg-indigo-500 px-6 py-2 font-semibold text-white hover:bg-indigo-600">保存する</button>
+                class="rounded bg-indigo-500 px-6 py-2 font-semibold text-white hover:bg-indigo-600">保存する</button>
         </div>
     </form>
 

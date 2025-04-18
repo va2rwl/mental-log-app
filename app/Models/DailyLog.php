@@ -8,14 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class DailyLog extends Model
 {
 
-use HasFactory;
+    use HasFactory;
 
     protected $fillable = [
         'user_id',
-        'date',
+        'log_date',
         'mood',
-        'sleep_start','sleep_end',
-        'meal_morning','lunch','dinner','meal_snack',
+        'sleep_start',
+        'sleep_end',
+        'meal_morning',
+        'meal_lunch',
+        'meal_dinner',
+        'meal_snack',
         'activity',
         'medication',
         'journal',
@@ -25,5 +29,4 @@ use HasFactory;
     {
         return $this->belongsTo(User::class);
     }
-
 }

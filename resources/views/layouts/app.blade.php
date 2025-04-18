@@ -1,41 +1,36 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>@yield('title','こころログ')</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <title>{{ config('app.name', 'Laravel') }}</title>
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+        <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body>
-        <header class="bg-white shadow p-4 flex flex-col sm:flex-row sm:justify-between items-center gap-2">
-            <h1 class="text-xl font-bold">
-                <a href="{{ route('dashboard') }}">こころログ</a>
-            </h1>
+    <body class="font-sans antialiased  bg-gray-100 ">
+        <div class="min-h-screen max-w-4xl pt-4 mx-auto">
 
-            @auth
-            <div class="flex gap-4">
-                <a
-                    href="{{ route('profile.edit') }}"
-                    class="text-blue-600 hover:underline"
-                    >設定</a
-                >
-                　
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="text-red-500 hover:underline">
-                        ログアウト
-                    </button>
-                </form>
-            </div>
-            @endauth
-        </header>
 
-        <main class="p-8">@yield('content')</main>
+            <!-- Page Heading -->
+            @isset($header)
+                <header class="bg-white shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
+            @endisset
 
-        <footer
-            class="bg-white text-center text-sm text-gray-500 py-4 border-t"
-        >
-            &copy; {{ date("Y") }} こころログ
-        </footer>
+            <!-- Page Content -->
+            <main>
+                @yield('content')
+            </main>
+        </div>
     </body>
 </html>
