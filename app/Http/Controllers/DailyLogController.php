@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 
 class DailyLogController extends Controller
 {
+
+    // 認証
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
