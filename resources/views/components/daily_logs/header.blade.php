@@ -3,7 +3,6 @@
                 <h1 class="text-xl font-bold text-indigo-600">
                     <a href="{{ route('dashboard') }}">こころログ</a>
                 </h1>
-
                 @auth
                     <nav class="flex gap-4 text-sm">
                         <a href="{{ route('daily-logs.index') }}" class="text-gray-700 hover:underline">記録一覧</a>
