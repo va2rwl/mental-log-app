@@ -5,20 +5,23 @@ use App\Http\Controllers\DailyLogController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
+// ダッシュボード
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+// ログイン後のみアクセス可能なルート
 Route::middleware('auth')->group(function () {
-    Route::prefix('profile')->name('plofile.')->group(function () {
-        Route::get('/', [ProfileController::class, 'edit'])->name('.edit');
-        Route::patch('/', [ProfileController::class, 'update'])->name('.update');
-        Route::delete('/', [ProfileController::class, 'destroy'])->name('.destroy');
+
+    // プロフィール（設定）
+    Route::prefix('profile')->name('profile.')->group(function () {
+        Route::get('/', [ProfileController::class, 'edit'])->name('edit');
+        Route::patch('/', [ProfileController::class, 'update'])->name('update');
+        Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
     });
-    // 行動記録（CRUD）
-    Route::resource('daily-logs', DailyLogController::class)->middleware('auth');
+    
+    // 行動記録（CRUD）- resource を使って簡潔に
+    Route::resource('daily-logs', DailyLogController::class);
 });
-
-
 
 require __DIR__ . '/auth.php';

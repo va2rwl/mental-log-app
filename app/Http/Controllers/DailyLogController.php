@@ -110,7 +110,7 @@ class DailyLogController extends Controller
         foreach (['meal_morning', 'meal_lunch', 'meal_dinner', 'meal_snack', 'medication'] as $field) {
             $data[$field] = $request->has($field);
         }
-        
+
         if ($request->filled('sleep_start')) {
             $data['sleep_start'] = $request->sleep_start . ':00';
         }
@@ -126,8 +126,11 @@ class DailyLogController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(DailyLog $dailyLog)
     {
-        //
+        $this->authorize('delete', $dailyLog);
+        $dailyLog->delete();
+
+        return redirect()->route('daily-logs.index')->with('success', '記録を削除しました！');
     }
 }

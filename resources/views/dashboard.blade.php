@@ -9,14 +9,17 @@
     {{-- 今日の記録の有無 --}}
     @if ($todayLog)
         <div class="mb-6 rounded-xl bg-white p-6 shadow-md">
-            <h3 class="mb-2 text-lg font-semibold text-indigo-600">今日の記録</h3>
-            <p class="mb-1">気分スコア：<span class="font-bold">{{ $todayLog->mood }}</span> / 100</p>
-            <p class="text-sm text-gray-500">{{ $todayLog->log_date->format('Y年m月d日') }}</p>
-
-            <a href="{{ route('daily-logs.edit', $todayLog) }}"
-                class="mt-4 inline-block rounded bg-indigo-500 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-600">
-                編集する
-            </a>
+            <div>
+                <h3 class="mb-2 text-lg font-semibold text-indigo-600">今日の記録</h3>
+                <p class="text-sm text-gray-500">{{ $todayLog->log_date->format('Y年m月d日') }}</p>
+                <p class="mb-1">気分スコア：<span class="font-bold">{{ $todayLog->mood }}</span> / 100</p>
+            </div>
+            <div class="mt-4 flex justify-end">
+                <a href="{{ route('daily-logs.edit', $todayLog) }}"
+                    class="mt-4 inline-block rounded bg-indigo-500 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-600">
+                    編集する
+                </a>
+            </div>
         </div>
     @else
         <div class="mb-6 rounded-xl bg-white p-6 shadow-md">
@@ -41,8 +44,19 @@
                                 気分 <span class="font-bold">{{ $log->mood }}</span>
                             </p>
                         </div>
-                        <a href="{{ route('daily-logs.edit', $log) }}"
-                            class="text-sm text-indigo-500 hover:underline">編集</a>
+                        <div class="btn flex gap-6">
+                            <div>
+                                <a href="{{ route('daily-logs.edit', $log) }}"
+                                    class="text-sm text-indigo-600 hover:underline">編集</a>
+                            </div>
+                            {{-- 削除ボタン --}}
+                            <form action="{{ route('daily-logs.destroy', $log) }}" method="POST"
+                                onsubmit="return confirm('この記録を削除しますか？');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-sm text-red-500 hover:underline">削除</button>
+                            </form>
+                        </div>
                     </li>
                 @endforeach
             </ul>

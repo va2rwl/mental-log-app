@@ -3,7 +3,7 @@
 @section('content')
     <h2 class="mb-6 text-2xl font-bold">今日の記録を編集する</h2>
 
-    <form action="{{ route('daily-logs.update',$dailyLog) }}" method="POST" class="space-y-6">
+    <form action="{{ route('daily_logs.update',$dailyLog) }}" method="POST" class="space-y-6">
         @csrf
         @method('PUT')
         @include('daily_logs.form', ['dailyLog' => $dailyLog])

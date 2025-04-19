@@ -46,11 +46,10 @@ class DailyLogPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, DailyLog $dailyLog): bool
+    public function delete(User $user, DailyLog $dailyLog)
     {
-        return false;
+        return $user->id === $dailyLog->user_id;
     }
-
     /**
      * Determine whether the user can restore the model.
      */

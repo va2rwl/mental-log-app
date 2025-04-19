@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,23 +15,16 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased  bg-gray-100 ">
-        <div class="min-h-screen max-w-4xl pt-4 mx-auto">
 
-
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
-
+    <body class="bg-gray-100 font-sans antialiased">
+        @include('components.daily_logs.header')
+        <div class="mx-auto min-h-screen max-w-4xl pt-20">
             <!-- Page Content -->
             <main>
                 @yield('content')
             </main>
         </div>
+        @include('components.daily_logs.footer')
     </body>
+
 </html>

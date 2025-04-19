@@ -16,9 +16,9 @@ class DashboardController extends Controller
             ->where('log_date', now()->toDateString())
             ->first();
 
-            // if ($todayLog) {
-            //     $todayLog->log_date = \Carbon\Carbon::parse($todayLog->log_date);
-            // }
+            if ($todayLog) {
+                $todayLog->log_date = \Carbon\Carbon::parse($todayLog->log_date);
+            }
 
         $recentLogs = DailyLog::where('user_id', Auth::id())
             ->orderBy('log_date', 'desc')
