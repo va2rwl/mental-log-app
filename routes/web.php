@@ -19,9 +19,14 @@ Route::middleware('auth')->group(function () {
         Route::patch('/', [ProfileController::class, 'update'])->name('update');
         Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
     });
-    
+
     // 行動記録（CRUD）- resource を使って簡潔に
     Route::resource('daily-logs', DailyLogController::class);
 });
+
+// エクスポート用
+Route::get('/daily-logs/export/csv', [DailyLogController::class, 'exportCsv'])
+    ->name('daily-logs.export')
+    ->middleware('auth');
 
 require __DIR__ . '/auth.php';

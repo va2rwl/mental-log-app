@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\DailyLog;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class DailyLogController extends Controller
 {
@@ -132,5 +133,49 @@ class DailyLogController extends Controller
         $dailyLog->delete();
 
         return redirect()->route('daily-logs.index')->with('success', '記録を削除しました！');
+    }
+
+
+
+    public function exportCsv(): StreamedResponse
+    {
+        $fileName = 'daily_logs_' . now()->format('Ymd_His') . '.csv';
+
+        $logs = DailyLog::where('user_id', Auth::id())
+            ->orderBy('log_date', 'desc')
+            ->get();
+
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => "attachment; filename=\"$fileName\"",
+        ];
+
+        $columns = [
+            'log_date',
+            'mood',
+            'sleep_start',
+            'sleep_end',
+            'meal_morning',
+            'meal_lunch',
+            'meal_dinner',
+            'meal_snack',
+            'activity',
+            'medication',
+            'journal',
+        ];
+
+        return response()->stream(function () use ($logs, $columns) {
+            $stream = fopen('php://output', 'w');
+
+            // ヘッダー行
+            fputcsv($stream, $columns);
+
+            // 各ログ
+            foreach ($logs as $log) {
+                fputcsv($stream, $log->only($columns));
+            }
+
+            fclose($stream);
+        }, 200, $headers);
     }
 }
