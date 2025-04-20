@@ -19,14 +19,14 @@
     </head>
 
     <body class="bg-gray-100 font-sans antialiased">
-        @include('components.daily_logs.header')
+        @include('components.daily-logs.header')
         <div class="mx-auto min-h-screen max-w-4xl pt-20">
             <!-- Page Content -->
             <main>
                 @yield('content')
             </main>
         </div>
-        @include('components.daily_logs.footer')
+        @include('components.daily-logs.footer')
     </body>
 
 </html>
