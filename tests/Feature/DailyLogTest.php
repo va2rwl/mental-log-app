@@ -10,7 +10,7 @@ class DailyLogTest extends TestCase
 {
     use RefreshDatabase;
 
-    // public function test_user_can_store_daily_log(): void
+    // public function test_user_can_store_daily-log(): void
     // {
     //     // ユーザー作成＆ログイン
     //     $user = User::factory()->create();
@@ -34,7 +34,7 @@ class DailyLogTest extends TestCase
     //     $response->assertRedirect(route('dashboard'));
 
     //     // DBに記録があるか確認
-    //     $this->assertDatabaseHas('daily_logs', [
+    //     $this->assertDatabaseHas('daily-logs', [
     //         'user_id' => $user->id,
     //         'mood' => 75,
     //         'activity' => 'カフェで作業',
@@ -42,7 +42,7 @@ class DailyLogTest extends TestCase
     //     ]);
     // }
 
-//     public function test_user_can_update_their_daily_log(): void
+//     public function test_user_can_update_their_daily-log(): void
 // {
 //     $user = \App\Models\User::factory()->create();
 
@@ -72,7 +72,7 @@ class DailyLogTest extends TestCase
 //     $response->assertRedirect(route('dashboard'));
 
 //     // データベースに反映されているか確認
-//     $this->assertDatabaseHas('daily_logs', [
+//     $this->assertDatabaseHas('daily-logs', [
 //         'id' => $log->id,
 //         'user_id' => $user->id,
 //         'mood' => 80,
@@ -80,7 +80,7 @@ class DailyLogTest extends TestCase
 //         'journal' => 'かなり調子がよかった',
 //     ]);
 // }
-public function test_user_can_delete_their_daily_log(): void
+public function test_user_can_delete_their_daily-log(): void
 {
     $user = \App\Models\User::factory()->create();
 
@@ -93,7 +93,7 @@ public function test_user_can_delete_their_daily_log(): void
     $response = $this->actingAs($user)->delete(route('daily-logs.destroy', $log));
 
     $response->assertRedirect(route('daily-logs.index'));
-    $this->assertDatabaseMissing('daily_logs', [
+    $this->assertDatabaseMissing('daily-logs', [
         'id' => $log->id,
     ]);
 }

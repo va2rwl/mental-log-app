@@ -20,7 +20,7 @@ class DailyLogController extends Controller
             ->orderBy('log_date', 'desc')
             ->paginate(10); // ページネーションあり
 
-        return view('daily_logs.index', compact('dailyLogs'));
+        return view('daily-logs.index', compact('dailyLogs'));
     }
 
     /**
@@ -28,7 +28,7 @@ class DailyLogController extends Controller
      */
     public function create()
     {
-        return view('daily_logs.create');
+        return view('daily-logs.create');
     }
 
     /**
@@ -84,7 +84,7 @@ class DailyLogController extends Controller
      */
     public function edit(DailyLog $dailyLog)
     {
-        return view('daily_logs.edit', compact('dailyLog'));
+        return view('daily-logs.edit', compact('dailyLog'));
     }
 
     /**
@@ -139,7 +139,7 @@ class DailyLogController extends Controller
 
     public function exportCsv(): StreamedResponse
     {
-        $fileName = 'daily_logs_' . now()->format('Ymd_His') . '.csv';
+        $fileName = 'daily-logs_' . now()->format('Ymd_His') . '.csv';
 
         $logs = DailyLog::where('user_id', Auth::id())
             ->orderBy('log_date', 'desc')

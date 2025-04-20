@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('daily_logs', function (Blueprint $table) {
-            Schema::table('daily_logs', function (Blueprint $table) {
+        Schema::table('daily-logs', function (Blueprint $table) {
+            Schema::table('daily-logs', function (Blueprint $table) {
                 $table->time('sleep_start')->nullable()->change();
                 $table->time('sleep_end')->nullable()->change();
             });
@@ -24,8 +24,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('daily_logs', function (Blueprint $table) {
-            Schema::table('daily_logs', function (Blueprint $table) {
+        Schema::table('daily-logs', function (Blueprint $table) {
+            Schema::table('daily-logs', function (Blueprint $table) {
                 $table->dateTime('sleep_start')->nullable()->change();
                 $table->dateTime('sleep_end')->nullable()->change();
             });
