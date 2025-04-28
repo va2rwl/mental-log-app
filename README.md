@@ -1,61 +1,48 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# こころログ
+## 概要
+こころログは、メンタル系疾患で通院中の方が、日々の行動や気分を手軽に記録できるアプリケーションです。
+「毎日の小さな変化に気づき、自己管理をサポートする」ことを目的に開発しました。
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+アプリケーション：https://test-route-0401.com
+テスト用メールアドレス：test2@example.com   
+テスト用パスワード：testtest
 
-## About Laravel
+## 特徴
+- シンプルな入力画面で、記録のハードルを下げる設計
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- 気分スコアと行動内容をセットで記録可能
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+= 日々の記録をダッシュボードで可視化し、振り返りを支援
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- データのCSVエクスポート対応で主治医への共有も容易に
 
-## Learning Laravel
+## 主な機能一覧
+- ユーザー登録・認証機能（Laravel Breeze使用）
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- 今日の記録入力（気分スコア、行動内容） 
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- 過去記録の一覧表示・編集・削除
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- ダッシュボード表示（最新の記録を強調表示）
 
-## Laravel Sponsors
+- プロフィール編集（基本情報）
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- CSVエクスポート機能（行動記録のダウンロード）
 
-### Premium Partners
+## 技術スタック
+- バックエンド: PHP 8.2 / Laravel 10
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+- フロントエンド: Bladeテンプレート / Tailwind CSS
 
-## Contributing
+- インフラ・デプロイ: Docker / AWS EC2
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- データベース: MySQL 8.0
 
-## Code of Conduct
+- その他: Git / GitHub / Laravel Sail (ローカル環境構築)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 開発背景
+メンタル疾患患者さんが「気軽に」「負担なく」使える記録アプリを目指しました。
 
-## Security Vulnerabilities
+紙の記録が負担だったり、既存アプリが高機能すぎて続かないという課題をヒアリングし、機能を最小限に絞り込みました。
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+医療機関への提出用に、CSVエクスポート機能も搭載しました。
